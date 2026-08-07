@@ -1,0 +1,38 @@
+# Java
+*.class
+
+# Build files
+target/
+out/
+build/
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
