@@ -1,91 +1,41 @@
-Create a clean **3-tier architecture diagram** for a **Personalized Nutrition Recommendation Platform**, matching the provided reference image.
+flowchart TB
 
-### Layout
+    U["User"]
+    A["Admin"]
 
-Arrange the components from **left to right** and keep the diagram simple, professional, and easy to understand.
+    subgraph FRONTEND["Frontend Layer"]
+        UI["Web Interface<br/>HTML + CSS + JavaScript"]
+    end
 
-### Components
+    subgraph BACKEND["Backend Layer - Java Spring Boot"]
+        AUTH["Authentication & Authorization"]
+        USER["User Profile Management"]
+        NUTRI["Nutrition Analysis"]
+        REC["Recommendation Service"]
+        MEAL["Meal Plan Service"]
+        PROG["Progress Tracking"]
+        ADMIN["Admin Management"]
+    end
 
-**1. Left Side – Users**
-Create two blue rounded rectangles:
+    subgraph DATABASE["Database Layer - MySQL"]
+        DB["MySQL Database<br/><br/>Users<br/>User Profiles<br/>Goals<br/>Foods<br/>Nutrition<br/>Meal Plans<br/>Recommendations<br/>Progress"]
+    end
 
-* USER
-* ADMIN
+    U --> UI
+    A --> UI
 
-Both USER and ADMIN should have arrows pointing to the FRONTEND.
+    UI --> AUTH
+    UI --> USER
+    UI --> NUTRI
+    UI --> REC
+    UI --> MEAL
+    UI --> PROG
+    UI --> ADMIN
 
-**2. Frontend**
-Create a green rounded rectangle:
-**FRONTEND**
-HTML + CSS + JavaScript
-
-Connect:
-
-* USER → FRONTEND with arrow labeled **Uses**
-* ADMIN → FRONTEND with arrow labeled **Uses**
-
-**3. Backend**
-To the right of FRONTEND, create a yellow rounded rectangle:
-**JAVA SPRING BOOT**
-**BACKEND**
-
-Connect:
-
-* FRONTEND → JAVA SPRING BOOT BACKEND
-* Label the arrow: **HTTP / REST API**
-
-**4. Application Services**
-Below the Spring Boot Backend, create a red/pink rounded rectangle:
-**APPLICATION SERVICES**
-
-Inside it list:
-
-* Authentication
-* User Management
-* Nutrition Analysis
-* Recommendation
-* Meal Plan
-* Progress Tracking
-
-Connect:
-
-* JAVA SPRING BOOT BACKEND → APPLICATION SERVICES
-* Label: **Processes**
-
-**5. Database**
-On the right side, create a purple **cylinder/database shape**:
-**MYSQL DATABASE**
-
-Inside the database list:
-
-* Users
-* Profiles
-* Goals
-* Foods
-* Nutrition
-* Meal Plans
-* Recommendations
-* Progress
-
-Connect:
-
-* APPLICATION SERVICES → MYSQL DATABASE
-* Label: **JPA / Hibernate**
-
-### Styling
-
-* Use rounded rectangles for User, Admin, Frontend, Backend and Application Services.
-* Use a cylinder/database shape for MySQL Database.
-* Use different light colors similar to the reference image:
-
-  * User/Admin: light blue
-  * Frontend: light green
-  * Backend: light yellow
-  * Application Services: light red/pink
-  * Database: light purple
-* Use black connector arrows.
-* Keep all labels centered.
-* Use a clean professional font such as Arial.
-* Maintain proper spacing and alignment.
-* Do not add any extra components.
-* The final diagram should visually match the reference architecture diagram as closely as possible.
+    AUTH --> DB
+    USER --> DB
+    NUTRI --> DB
+    REC --> DB
+    MEAL --> DB
+    PROG --> DB
+    ADMIN --> DB
