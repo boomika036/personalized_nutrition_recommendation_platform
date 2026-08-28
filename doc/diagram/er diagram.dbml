@@ -1,0 +1,78 @@
+Table users {
+  user_id int [pk, increment]
+  name varchar(100)
+  email varchar(150) [unique]
+  password varchar(255)
+  role varchar(20)
+  created_at datetime
+}
+
+Table user_profiles {
+  profile_id int [pk, increment]
+  user_id int [unique, ref: > users.user_id]
+  age int
+  gender varchar(20)
+  height decimal(5,2)
+  weight decimal(5,2)
+  activity_level varchar(50)
+  dietary_preference varchar(50)
+}
+
+Table goals {
+  goal_id int [pk, increment]
+  user_id int [ref: > users.user_id]
+  goal_type varchar(50)
+  target_weight decimal(5,2)
+  created_at datetime
+}
+
+Table foods {
+  food_id int [pk, increment]
+  food_name varchar(100)
+  category varchar(50)
+  serving_size varchar(50)
+}
+
+Table nutrition {
+  nutrition_id int [pk, increment]
+  food_id int [unique, ref: > foods.food_id]
+  calories decimal(8,2)
+  protein decimal(8,2)
+  carbohydrates decimal(8,2)
+  fats decimal(8,2)
+  fiber decimal(8,2)
+}
+
+Table meal_plans {
+  meal_plan_id int [pk, increment]
+  user_id int [ref: > users.user_id]
+  plan_name varchar(100)
+  meal_type varchar(50)
+  created_at datetime
+}
+
+Table meal_plan_foods {
+  meal_plan_id int [ref: > meal_plans.meal_plan_id]
+  food_id int [ref: > foods.food_id]
+  quantity decimal(8,2)
+
+  indexes {
+    (meal_plan_id, food_id) [pk]
+  }
+}
+
+Table recommendations {
+  recommendation_id int [pk, increment]
+  user_id int [ref: > users.user_id]
+  food_id int [ref: > foods.food_id]
+  reason varchar(255)
+  created_at datetime
+}
+
+Table progress {
+  progress_id int [pk, increment]
+  user_id int [ref: > users.user_id]
+  weight decimal(5,2)
+  recorded_date date
+  notes varchar(255)
+}
